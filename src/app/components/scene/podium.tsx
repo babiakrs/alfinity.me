@@ -16,6 +16,7 @@ export function Podium() {
   const { nodes: weatherProjectLogoNodes } = useGLTF('models/weather-project-logo.glb');
   const { nodes: sassLogoNodes } = useGLTF('models/sass-logo.glb');
   const { nodes: ukraineNodes } = useGLTF('models/ukraine.glb');
+  const { nodes: cvNodes } = useGLTF('models/cv.glb');
 
   const podiumMeshes = useMemo(() => {
     return Object.values(podiumNodes).filter((node) => {
@@ -51,6 +52,12 @@ export function Podium() {
           geometry={(node as Mesh).geometry}
         />
       ))}
+
+      <mesh
+        geometry={(cvNodes['Logo'] as Mesh).geometry}
+        position={podiumNodes['Hexagon013Place'].position}
+        scale={sc}
+      />
 
       <mesh
         geometry={(ukraineNodes['Logo'] as Mesh).geometry}
@@ -150,3 +157,4 @@ useGLTF.preload('models/github-logo.glb');
 useGLTF.preload('models/weather-project-logo.glb');
 useGLTF.preload('models/sass-logo.glb');
 useGLTF.preload('models/ukraine.glb');
+useGLTF.preload('models/cv.glb');
