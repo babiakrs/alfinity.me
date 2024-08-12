@@ -29,8 +29,14 @@ export default defineConfig({
     emptyOutDir: true,
     reportCompressedSize: true,
     commonjsOptions: {
-      transformMixedEsModules: true,
-    },
+      transformMixedEsModules: true
+    }
+  },
+
+  css: {
+    modules: {
+      localsConvention: 'camelCase'
+    }
   },
 
   test: {
