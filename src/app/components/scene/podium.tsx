@@ -1,31 +1,16 @@
 import { useGLTF } from '@react-three/drei';
 import { useMemo, useRef } from 'react';
-import { Color, DoubleSide, Group, Mesh, MeshBasicMaterial, MeshPhysicalMaterial, TextureLoader, Vector3 } from 'three';
-import { useFrame, useLoader } from '@react-three/fiber';
-
-// 1. GitHub +
-// 2. Telegram +
-// 3. Gmail +
-// 4. LinkedIn +
-// 5. TypeScript +
-// 6. Angular +
-// 7. React +
-// 8. Node.js +
-// 9. Nest.js +
-// 10. Weather Project +
-// 11. SCSS +
-// 12. Ukraine
-// 13. Avatar
+import { Color, Group, Mesh, MeshStandardMaterial, Vector3 } from 'three';
 
 export function Podium() {
   const { nodes: podiumNodes } = useGLTF('models/podium.glb');
-  const { nodes: ngLogoNodes } = useGLTF('models/angular-logo.glb');
+  const { nodes: ngLogoNodes, materials: ngLogoMaterials } = useGLTF('models/angular-logo.glb');
   const { nodes: reactLogoNodes } = useGLTF('models/react-logo.glb');
   const { nodes: nodeJSLogoNodes } = useGLTF('models/nodejs-logo.glb');
   const { nodes: nestJSLogoNodes } = useGLTF('models/nestjs-logo.glb');
   const { nodes: typescriptLogoNodes } = useGLTF('models/typescript-logo.glb');
   const { nodes: linkedinLogoNodes } = useGLTF('models/linkedin-logo.glb');
-  const { nodes: gmailLogoNodes } = useGLTF('models/gmail-logo.glb');
+  const { nodes: gmailLogoNodes, materials: gmailLogoMaterials } = useGLTF('models/gmail-logo.glb');
   const { nodes: telegramLogoNodes } = useGLTF('models/telegram-logo.glb');
   const { nodes: githubLogoNodes } = useGLTF('models/github-logo.glb');
   const { nodes: weatherProjectLogoNodes } = useGLTF('models/weather-project-logo.glb');
@@ -38,77 +23,93 @@ export function Podium() {
     });
   }, [ podiumNodes ]);
 
-  // const angularGradient = useLoader(TextureLoader, 'textures/angular-gradient.jpg');
-  // const angularLogoMaterial = new MeshBasicMaterial({ map: angularGradient });
-
   const podiumGroup = useRef<Group>(null!);
-  // useFrame((_, delta) => (podiumGroup.current.rotation.y += delta / 2));
+  // useFrame((_, delta) => (podiumGroup.current.rotation.y += ((delta / 2) % 360)));
 
-  const mat = new MeshPhysicalMaterial({
-    color: new Color(0x000000)
-  });
+  const typescriptMaterial = new MeshStandardMaterial({ color: new Color(0x3178C6) });
+  const linkedinMaterial = new MeshStandardMaterial({ color: new Color(0x0A65C1) });
+  const telegramMaterial = new MeshStandardMaterial({ color: new Color(0x28A9E9) });
+  const sassMaterial = new MeshStandardMaterial({ color: new Color(0xCC6799) });
+  const reactMaterial = new MeshStandardMaterial({ color: new Color(0x00D8FF) });
+  const githubMaterial = new MeshStandardMaterial({ color: new Color(0x242930) });
+  const nodejsMaterial = new MeshStandardMaterial({ color: new Color(0x5FA04E) });
+  const nestjsMaterial = new MeshStandardMaterial({ color: new Color(0xE0234D) });
 
-  const sc = new Vector3(0.5, 1, 0.5);
+  const podiumMaterial = new MeshStandardMaterial({ color: new Color(0x3e4156) });
+
+  const gmailMaterial = new MeshStandardMaterial().copy(gmailLogoMaterials['Gmail']);
+  const ngMaterial = new MeshStandardMaterial().copy(ngLogoMaterials['AngularGradient']);
+
+  const sc = new Vector3(0.5, 1.5, 0.5);
 
   return (
     <group ref={podiumGroup}>
       {podiumMeshes.map((node) => (
         <mesh
           key={node.name}
-          material={mat}
+          material={podiumMaterial}
           geometry={(node as Mesh).geometry}
         />
       ))}
 
       <mesh
+        material={ngMaterial}
         geometry={(ngLogoNodes['Logo'] as Mesh).geometry}
         position={podiumNodes['Hexagon013Place'].position}
         scale={sc}
       />
 
       <mesh
+        material={reactMaterial}
         geometry={(reactLogoNodes['Logo'] as Mesh).geometry}
         position={podiumNodes['Hexagon012Place'].position}
         scale={sc}
       />
 
       <mesh
+        material={nodejsMaterial}
         geometry={(nodeJSLogoNodes['Logo'] as Mesh).geometry}
         position={podiumNodes['Hexagon011Place'].position}
         scale={sc}
       />
 
       <mesh
+        material={nestjsMaterial}
         geometry={(nestJSLogoNodes['Logo'] as Mesh).geometry}
         position={podiumNodes['Hexagon010Place'].position}
         scale={sc}
       />
 
       <mesh
+        material={typescriptMaterial}
         geometry={(typescriptLogoNodes['Logo'] as Mesh).geometry}
         position={podiumNodes['Hexagon009Place'].position}
         scale={sc}
       />
 
       <mesh
+        material={linkedinMaterial}
         geometry={(linkedinLogoNodes['Logo'] as Mesh).geometry}
         position={podiumNodes['Hexagon008Place'].position}
         scale={sc}
       />
 
       <mesh
+        material={gmailMaterial}
         geometry={(gmailLogoNodes['Logo'] as Mesh).geometry}
         position={podiumNodes['Hexagon007Place'].position}
         scale={sc}
       />
 
       <mesh
+        material={telegramMaterial}
         geometry={(telegramLogoNodes['Logo'] as Mesh).geometry}
         position={podiumNodes['Hexagon006Place'].position}
         scale={sc}
       />
 
       <mesh
+        material={githubMaterial}
         geometry={(githubLogoNodes['Logo'] as Mesh).geometry}
         position={podiumNodes['Hexagon005Place'].position}
         scale={sc}
@@ -121,6 +122,7 @@ export function Podium() {
       />
 
       <mesh
+        material={sassMaterial}
         geometry={(sassLogoNodes['Logo'] as Mesh).geometry}
         position={podiumNodes['Hexagon003Place'].position}
         scale={sc}

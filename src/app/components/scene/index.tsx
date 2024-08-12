@@ -1,40 +1,28 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import { Podium } from './podium';
-import { Canvas, useFrame } from '@react-three/fiber';
-import { Color, DirectionalLight } from 'three';
+import { Canvas } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
-
-function Light() {
-  const spotLightColor = new Color(0xffffff);
-
-  const lightRef = useRef<DirectionalLight>(null!);
-
-  useFrame(({ camera }) => {
-    lightRef.current.position.set(camera.position.x, camera.position.y, camera.position.z);
-  });
-
-  return <directionalLight
-    ref={lightRef}
-    intensity={20}
-    position={[ 15, 7, 0 ]}
-    color={spotLightColor}
-  />;
-}
+import { BackgroundLight } from './background-light';
+import { AnimatedCamera } from './animated-camera';
+import { Light } from './light';
 
 export function Scene() {
-  const backgroundColor = new Color(0x222538);
-
   return (
-    <Canvas camera={{ position: [ 15, 0, 0 ] }}>
-
+    <Canvas camera={{ position: [ 0, 70, 70 ], fov: 50 }}>
       <OrbitControls
-        target={[ 0, 7, 0 ]}
+        target={[ 0, 5, 0 ]}
+        minPolarAngle={0}
+        maxPolarAngle={Math.PI / 3}
+        minDistance={10}
+        maxDistance={20}
+        enablePan={false}
       />
-
-      <color attach="background" args={[ backgroundColor.r, backgroundColor.g, backgroundColor.b ]}></color>
 
       <Podium />
       <Light />
+      <BackgroundLight />
+
+      <AnimatedCamera />
     </Canvas>
   );
 }
