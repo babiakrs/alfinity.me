@@ -53,22 +53,14 @@ export function Podium() {
       ))}
 
       <mesh
-        material={ngMaterial}
-        geometry={(ngLogoNodes['Logo'] as Mesh).geometry}
-        position={podiumNodes['Hexagon013Place'].position}
-        scale={sc}
-      />
-
-      <mesh
-        material={reactMaterial}
-        geometry={(reactLogoNodes['Logo'] as Mesh).geometry}
+        geometry={(ukraineNodes['Logo'] as Mesh).geometry}
         position={podiumNodes['Hexagon012Place'].position}
         scale={sc}
       />
 
       <mesh
-        material={nodejsMaterial}
-        geometry={(nodeJSLogoNodes['Logo'] as Mesh).geometry}
+        material={typescriptMaterial}
+        geometry={(typescriptLogoNodes['Logo'] as Mesh).geometry}
         position={podiumNodes['Hexagon011Place'].position}
         scale={sc}
       />
@@ -81,8 +73,7 @@ export function Podium() {
       />
 
       <mesh
-        material={typescriptMaterial}
-        geometry={(typescriptLogoNodes['Logo'] as Mesh).geometry}
+        geometry={(weatherProjectLogoNodes['Logo'] as Mesh).geometry}
         position={podiumNodes['Hexagon009Place'].position}
         scale={sc}
       />
@@ -116,7 +107,8 @@ export function Podium() {
       />
 
       <mesh
-        geometry={(weatherProjectLogoNodes['Logo'] as Mesh).geometry}
+        material={nodejsMaterial}
+        geometry={(nodeJSLogoNodes['Logo'] as Mesh).geometry}
         position={podiumNodes['Hexagon004Place'].position}
         scale={sc}
       />
@@ -129,8 +121,16 @@ export function Podium() {
       />
 
       <mesh
-        geometry={(ukraineNodes['Logo'] as Mesh).geometry}
+        material={reactMaterial}
+        geometry={(reactLogoNodes['Logo'] as Mesh).geometry}
         position={podiumNodes['Hexagon002Place'].position}
+        scale={sc}
+      />
+
+      <mesh
+        material={ngMaterial}
+        geometry={(ngLogoNodes['Logo'] as Mesh).geometry}
+        position={podiumNodes['Hexagon001Place'].position}
         scale={sc}
       />
     </group>

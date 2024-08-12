@@ -14,7 +14,7 @@ export function AnimatedCamera() {
 
   useEffect(() => {
     tween.start();
-  }, [ tween ]);
+  }, []);
 
   useFrame(() => tween.update());
   return null;
