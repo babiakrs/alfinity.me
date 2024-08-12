@@ -7,10 +7,147 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+
+  <style>
+      .splash {
+          position: relative;
+
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          width: 100vw;
+          height: 100vh;
+
+          background-color: oklch(27.07% 0.036 276.84);
+      }
+
+      .splash__container {
+          width: 800px;
+      }
+
+      .splash__title {
+          margin: 0;
+
+          font-family: "Zain", sans-serif;
+          font-weight: 400;
+          font-style: normal;
+
+          font-size: 64px;
+          color: oklch(91.18% 0.034 282.71);
+      }
+
+      .splash__subtitle {
+          margin: 0;
+
+          font-family: "Zain", sans-serif;
+          font-weight: 300;
+          font-style: normal;
+
+          font-size: 36px;
+          color: oklch(91.18% 0.034 282.71);
+          text-align: right;
+      }
+
+      .splash__button {
+          font-family: "Zain", sans-serif;
+          font-weight: 400;
+          font-style: normal;
+          font-size: 30px;
+          letter-spacing: 4px;
+
+          margin: 16px 0 0 0;
+          padding: 4px 24px;
+
+          border: 2px solid oklch(91.18% 0.034 282.71);
+          border-radius: 8px;
+
+          color: oklch(91.18% 0.034 282.71);
+          background: linear-gradient(145deg, #17202A, #1F2C38, #273845);
+
+          transition: all 0.3s ease-in-out;
+          cursor: pointer;
+          position: relative;
+          overflow: hidden;
+          outline: none;
+      }
+
+      .splash__button:not(:disabled):hover {
+          transform: scale(1.05);
+          border-color: oklch(91.18% 0.034 282.71);
+      }
+
+      .splash__button:before {
+          content: '';
+          position: absolute;
+          top: -2px;
+          left: -2px;
+          width: calc(100% + 4px);
+          height: calc(100% + 4px);
+          border: 2px solid rgba(255, 255, 255, 0.2);
+          border-radius: 10px;
+          box-sizing: border-box;
+          pointer-events: none;
+          transition: all 0.3s ease-in-out;
+      }
+
+      .splash__button:not(:disabled):hover:before {
+          border-color: rgba(255, 255, 255, 0.5);
+      }
+
+      .splash__button:after {
+          content: '';
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          width: 0;
+          height: 0;
+          background: rgba(255, 255, 255, 0.2);
+          transform: translate(-50%, -50%);
+          border-radius: 50%;
+          transition: all 0.3s ease-in-out;
+      }
+
+      .splash__button:not(:disabled):hover:after {
+          width: 200%;
+          height: 200%;
+          opacity: 0;
+      }
+  </style>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Zain:wght@200;300;400;700;800;900&display=swap"
+    rel="stylesheet">
+
   <link rel="stylesheet" href="/src/styles.scss" />
 </head>
+
 <body>
-<div id="root"></div>
-<script type="module" src="/src/main.tsx"></script>
+<div id="root">
+  <div class="splash">
+    <div class="splash__container">
+      <h3 class="splash__title">Welcome to alfinity.me!</h3>
+
+      <p class="splash__subtitle">
+        My name is Roman.
+        <br />
+        I'm a frontend engineer in love with clean code, well-organized workflow and Web as well.
+      </p>
+
+      <script>
+        function boostrap(button) {
+          button.disabled = true;
+          button.innerText = 'loading...';
+
+          import('/src/main');
+        }
+      </script>
+
+      <button onclick="boostrap(this)" class="splash__button">explore</button>
+    </div>
+  </div>
+</div>
 </body>
 </html>
