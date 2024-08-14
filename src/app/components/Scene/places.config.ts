@@ -59,6 +59,7 @@ export const placesConfig: PlaceProps[] = [
   {
     place: 12,
     gltfPath: 'models/cv.glb',
+    material: (materials) => materials['WrinkledPaper'],
   },
   {
     place: 13,
