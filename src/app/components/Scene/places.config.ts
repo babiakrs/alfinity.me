@@ -40,7 +40,8 @@ export const placesConfig: PlaceProps[] = [
   },
   {
     place: 8,
-    gltfPath: 'models/weather-project-logo.glb'
+    gltfPath: 'models/weather-project-logo.glb',
+    material: (materials) => materials['LooseCoarseFabric'],
   },
   {
     place: 9,
