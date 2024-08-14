@@ -24,7 +24,11 @@ export function Scene() {
       />
 
       <Podium>
-        {placesConfig.map((place, idx) => <Podium.Place key={idx} {...place} />)}
+        {placesConfig.map((place, idx) => (
+          <React.Suspense key={idx}>
+            <Podium.Place {...place} />
+          </React.Suspense>
+        ))}
       </Podium>
     </Canvas>
   );
