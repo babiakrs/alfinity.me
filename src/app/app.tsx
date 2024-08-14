@@ -1,12 +1,11 @@
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import React, { Suspense } from 'react';
-import { Scene } from './components/scene';
-import { Splash } from './components/splash';
+import React from 'react';
+import { Scene } from './components/Scene';
+import { Splash } from './components/Splash';
 
 export function App() {
   return (
-    <Suspense fallback={<Splash />}>
+    <React.Suspense fallback={<Splash />}>
       <Scene />
-    </Suspense>
+    </React.Suspense>
   );
 }

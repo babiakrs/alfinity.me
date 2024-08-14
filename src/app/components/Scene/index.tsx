@@ -1,7 +1,7 @@
 import React from 'react';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
-import { Podium } from '../podium';
+import { Podium } from '../Podium';
 import { BackgroundLight } from './BackgroundLight';
 import { AnimatedCamera } from './AnimatedCamera';
 import { Light } from './Light';

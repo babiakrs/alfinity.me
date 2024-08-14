@@ -1,6 +1,6 @@
+import React from 'react';
 import { useFrame, useThree } from '@react-three/fiber';
 import { Easing, Tween } from '@tweenjs/tween.js';
-import { useEffect } from 'react';
 
 export function AnimatedCamera() {
   const { camera } = useThree();
@@ -12,7 +12,7 @@ export function AnimatedCamera() {
     .easing(Easing.Quadratic.Out)
     .onUpdate(() => camera.position.set(initialPosition.x, initialPosition.y, initialPosition.z));
 
-  useEffect(() => {
+  React.useEffect(() => {
     tween.start();
   }, []);
 

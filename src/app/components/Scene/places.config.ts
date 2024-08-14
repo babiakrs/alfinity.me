@@ -1,6 +1,6 @@
-import { PlaceProps } from '../podium';
 import { useGLTF } from '@react-three/drei';
 import { Color, MeshStandardMaterial } from 'three';
+import { PlaceProps } from '../Podium';
 
 export const placesConfig: PlaceProps[] = [
   {
