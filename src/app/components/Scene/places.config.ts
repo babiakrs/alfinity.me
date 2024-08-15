@@ -55,7 +55,8 @@ export const placesConfig: PlaceProps[] = [
   },
   {
     place: 11,
-    gltfPath: 'models/ukraine.glb'
+    gltfPath: 'models/ukraine.glb',
+    material: new MeshStandardMaterial({ color: new Color(0xFFD800) }),
   },
   {
     place: 12,
