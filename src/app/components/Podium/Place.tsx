@@ -19,7 +19,6 @@ export const Place = React.forwardRef<Mesh, PlaceProps>(
   function Place({ gltfPath, place, material, geometry, ...props }, ref) {
     const gltf = useGLTF(gltfPath);
     const { places } = React.useContext(PodiumContext);
-    console.log(place, gltf);
 
     const localRef = React.useRef<Mesh>(null!);
     React.useImperativeHandle(ref, () => localRef.current, []);
