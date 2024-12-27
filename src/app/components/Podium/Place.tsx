@@ -13,10 +13,16 @@ export type PlaceProps = Omit<JSX.IntrinsicElements['mesh'], 'material' | 'geome
   geometry?: JSX.IntrinsicElements['mesh']['geometry'] | ((nodes: {
     [p: string]: Object3D
   }) => JSX.IntrinsicElements['mesh']['geometry']);
+  meta: {
+    title: string;
+    description: string;
+    link?: string;
+  };
+  onPlaceClick?: () => void;
 };
 
 export const Place = React.forwardRef<Mesh, PlaceProps>(
-  function Place({ gltfPath, place, material, geometry, ...props }, ref) {
+  function Place({ gltfPath, place, material, geometry, onPlaceClick, ...props }, ref) {
     const gltf = useGLTF(gltfPath);
     const { places } = React.useContext(PodiumContext);
 
@@ -47,6 +53,7 @@ export const Place = React.forwardRef<Mesh, PlaceProps>(
         position={getPosition()}
         onPointerOver={() => placeAnimationRef.current.onPointerOver()}
         onPointerOut={() => placeAnimationRef.current.onPointerOut()}
+        onClick={() => onPlaceClick?.()}
       >
         {/* Transparent plane to increase pointer trigger area */}
         <mesh rotation={[ -Math.PI / 2, 0, 0 ]}>

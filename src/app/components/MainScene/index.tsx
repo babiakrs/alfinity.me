@@ -1,5 +1,4 @@
 import React from 'react';
-import { Canvas } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
 import { Podium } from '../Podium';
 import { AnimatedCamera } from './AnimatedCamera';
@@ -7,9 +6,13 @@ import { Light } from './Light';
 import { placesConfig } from './places.config';
 import { BackgroundLight } from './BackgroundLight';
 
-export function Scene() {
+export interface MainSceneProps {
+  onPlaceClick?: () => void;
+}
+
+export function MainScene({ onPlaceClick }: MainSceneProps) {
   return (
-    <Canvas camera={{ position: [ 0, 70, 70 ], fov: 50 }} style={{ position: 'absolute' }}>
+    <>
       <Light />
       <BackgroundLight />
       <AnimatedCamera />
@@ -24,8 +27,10 @@ export function Scene() {
       />
 
       <Podium>
-        {placesConfig.map((place, idx) => <Podium.Place key={idx} {...place} />)}
+        {placesConfig.map((place, idx) => (
+          <Podium.Place key={idx} onPlaceClick={() => onPlaceClick?.()} {...place} />
+        ))}
       </Podium>
-    </Canvas>
+    </>
   );
 }
